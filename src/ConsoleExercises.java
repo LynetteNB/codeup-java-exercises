@@ -69,8 +69,8 @@ public class ConsoleExercises {
 //        You will need to use the .useDelimiter() method on your scanner object
 //        Output the result as a comma-separated list using printf()
         System.out.print("Enter your grocery list of 3 items separated by commas: ");
-        scan.useDelimiter("[,]");
-        System.out.printf("1)%s,\n2)%s\n3)%s\n", scan.next(), scan.next(), scan.next());
+        scan.useDelimiter("[,\\s\\n]+"); //delimiters are comma, space, new line, + matches 1 or more of the previous thing
+        System.out.printf("1)%s\n2)%s\n3)%s\n", scan.next(), scan.next(), scan.next());
 
     }
 }
