@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class ControlFlowExercises {
@@ -100,47 +101,114 @@ public class ControlFlowExercises {
 //        Bonus
 //
 //        Edit your grade ranges to include pluses and minuses (ex: 99-100 = A+).
-        char userContinue;
-        int grade;
-        do {
-            System.out.println("What is the numerical grade? ");
-            grade = scan.nextInt();
-            if (grade <= 59) {
-                System.out.println("F");
-            } else if (grade <= 66) {
-                System.out.println("D");
-            } else if (grade <= 71) {
-                System.out.println("C-");
-            } else if (grade <= 75) {
-                System.out.println("C");
-            } else if (grade <= 79) {
-                System.out.println("C+");
-            } else if (grade <= 85) {
-                System.out.println("B-");
-            } else if (grade <= 87) {
-                System.out.println("B");
-            } else if (grade <= 90) {
-                System.out.println("B+");
-            } else if (grade <= 94) {
-                System.out.println("A-");
-            } else if (grade <= 98) {
-                System.out.println("A");
-            } else if (grade <= 100) {
-                System.out.println("A+");
-            }
-            System.out.println("Would you like to continue? [y/n] ");
-            userContinue = scan.next().charAt(0);
-        } while (userContinue == 'y');
+//        char userContinue;
+//        int grade;
+//        do {
+//            System.out.println("What is the numerical grade? ");
+//            grade = scan.nextInt();
+//            if (grade <= 59) {
+//                System.out.println("F");
+//            } else if (grade <= 66) {
+//                System.out.println("D");
+//            } else if (grade <= 71) {
+//                System.out.println("C-");
+//            } else if (grade <= 75) {
+//                System.out.println("C");
+//            } else if (grade <= 79) {
+//                System.out.println("C+");
+//            } else if (grade <= 85) {
+//                System.out.println("B-");
+//            } else if (grade <= 87) {
+//                System.out.println("B");
+//            } else if (grade <= 90) {
+//                System.out.println("B+");
+//            } else if (grade <= 94) {
+//                System.out.println("A-");
+//            } else if (grade <= 98) {
+//                System.out.println("A");
+//            } else if (grade <= 100) {
+//                System.out.println("A+");
+//            }
+//            System.out.println("Would you like to continue? [y/n] ");
+//            userContinue = scan.next().charAt(0);
+//        } while (userContinue == 'y');
 
 //        ================================= CONTROL STRUCTURES BONUSES
 //        1. Prompt the user to enter an integer between 1 and 7 and output the day of the week it maps to (Sunday is 1 and Saturday is 7)
+//        System.out.print("Please enter an integer from 1 to 7: ");
+//        int userDay = scan.nextInt();
+//        switch (userDay) {
+//            case 1:
+//                System.out.println("Sunday");
+//                break;
+//            case 2:
+//                System.out.println("Monday");
+//                break;
+//            case 3:
+//                System.out.println("Tuesday");
+//                break;
+//            case 4:
+//                System.out.println("Wednesday");
+//                break;
+//            case 5:
+//                System.out.println("Thursday");
+//                break;
+//            case 6:
+//                System.out.println("Friday");
+//                break;
+//            case 7:
+//                System.out.println("Saturday");
+//                break;
+//        }
 //        2. Prompt the user for an integer. Output whether or not the number is prime.
+//        System.out.print("Enter an integer to find out if it is prime: ");
+//        int number = scan.nextInt();
+//        int i = 2;
+//        if (number == 2 || number == 3) {
+//            System.out.println(number + " is prime!");
+//        } else {
+//            while (i <= (int) Math.sqrt(number)) {
+//                if (number % i == 0) {
+//                    System.out.println(number + " is not prime.");
+//                    break;
+//                } else if (i == (int) Math.sqrt(number) && number % i != 0) {
+//                    System.out.println(number + " is prime!");
+//                }
+//                i++;
+//            }
+//        }
+
 //        3. Prompt the user to enter an integer and output all the days of the week that
 //        have no more letters than the integer given.
+//        System.out.print("Enter an integer and I will display the days of the week with the same amount of letters or less: ");
+//        int userLetterCount = scan.nextInt();
+//        String[] days = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+//        for (int i = 0; i < 7; i++){
+//            if(days[i].length() <= userLetterCount){
+//                System.out.println(days[i]);
+//            }
+//        }
+
 //        4. Prompt the user to enter their name. Output whether the name is
 //                - short (less than 4 characters), medium (less than 9), long (more than 8)
 //        - contains the letter 'y'
 //                - is a palindrome
+//        System.out.print("Enter your first name: ");
+//        String name = scan.next();
+//        if (name.length() > 8){
+//            System.out.println(name + " is a long name!");
+//        } else if (name.length() > 4){
+//            System.out.println(name + " is a medium name!");
+//        } else if (name.length() > 0){
+//            System.out.println(name + " is a short name!");
+//        }
+//        if (name.indexOf('y') > 0){
+//            System.out.println("Your name has a 'y' in it!");
+//        }
+//        if (name.equalsIgnoreCase(new StringBuilder(name).reverse().toString())){
+//            System.out.println("Your name is a palindrome!");
+//        };
+
 //        5. Print out all times from 1:00am to 12:00pm.
 //                Example:
 //        1:00am
@@ -149,24 +217,19 @@ public class ControlFlowExercises {
 //        etc.
 //                this will help you for this bonus...
 //        https://stackoverflow.com/questions/12421444/how-to-format-a-number-0-9-to-display-with-2-digits-its-not-a-date
-
-
-//        ================================= CONSOLE IO BONUSES
-//        BONUS 1
-//        Prompt the user to enter a favorite quote
-//        Output the quote
-//        Ask them to enter how many words are in the sentence
-//        Output the number they entered
-//        BONUS 2
-//        Prompt the user to enter a list of top three favorite foods separated by only spaces
-//        Use the printf() to output there three top foods with the format:
-//        1) FirstFood
-//        2) SecondFood
-//        3) ThirdFood
-//        BONUS 3
-//        Prompt the user to enter a grocery list of three items
-//        Each item should only be separated by a comma (no spaces)
-//        You will need to use the .useDelimiter() method on your scanner object
-//        Output the result as a comma-separated list using printf()
+        int minutes = 0;
+        for(int hour = 1; hour < 12; minutes++) {
+            String time = "am";
+            if (minutes == 60){
+                hour++;
+                minutes=0;
+            }
+            if (hour >= 12){
+                time = "pm";
+            }
+            System.out.print(hour + ":");
+            System.out.printf("%02d", minutes);
+            System.out.println(time);
+        }
     }
 }
