@@ -13,10 +13,10 @@ public class Bob {
             userIn = scan.nextLine();
             if (userIn.endsWith("?")) {
                 System.out.println("Sure.");
-            } else if (userIn.equals(userIn.toUpperCase()) && !userIn.equals("") || userIn.endsWith("!")) {
-                System.out.println("Whoa, chill out!");
-            } else if (userIn.equalsIgnoreCase("bob")) {
+            } else if (userIn.trim().equals("")) {
                 System.out.println("Fine. Be that way!");
+            } else if (userIn.equals(userIn.toUpperCase()) || userIn.endsWith("!")) {
+                System.out.println("Whoa, chill out!");
             } else {
                 System.out.println("Whatever.");
             }
