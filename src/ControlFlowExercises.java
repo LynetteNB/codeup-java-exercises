@@ -50,17 +50,16 @@ public class ControlFlowExercises {
 //        for(int i = 1; i <= 100; i++){
 //            if(i%3 == 0 && i%5 == 0){
 //                System.out.println("FizzBuzz");
-//                continue;
 //            }
 //            else if(i%3 == 0){
 //                System.out.println("Fizz");
-//                continue;
 //            }
 //            else if(i%5 == 0){
 //                System.out.println("Buzz");
-//                continue;
 //            }
-//            System.out.println(i);
+//            else {
+//              System.out.println(i);
+//            }
 //        }
 
 //        Prompt the user to enter an integer.
@@ -68,21 +67,21 @@ public class ControlFlowExercises {
 //        Ask if the user wants to continue.
 //        Assume that the user will enter valid data.
 //        Only continue if the user agrees to.
-//        int userInt;
+        int userInt;
         Scanner scan = new Scanner(System.in);
-//        char userContinue;
-//        do {
-//            System.out.print("What number would you like to go up to? ");
-//            userInt = scan.nextInt();
-//            System.out.println("number | squared | cubed\n------ | ------- | -----");
-//            int i = 1;
-//            do {
-//                System.out.println(i + "      | " + (i * i) + "       | " + (i * i * i));
-//                i++;
-//            } while (i <= userInt);
-//            System.out.print("Would you like to continue? [y/n] ");
-//            userContinue = scan.next().charAt(0);
-//        } while(userContinue == 'y');
+        char userContinue;
+        do {
+            System.out.print("What number would you like to go up to? ");
+            userInt = scan.nextInt();
+            System.out.println("number | squared | cubed\n------ | ------- | -----");
+            int i = 1;
+            do {
+                System.out.printf("%-7d| %-8d| %d\n", i, i*i, i*i*i);
+                i++;
+            } while (i <= userInt);
+            System.out.print("Would you like to continue? [y/n] ");
+            userContinue = scan.next().charAt(0);
+        } while(userContinue == 'y');
 
 //        Convert given number grades into letter grades.
 //
@@ -217,19 +216,19 @@ public class ControlFlowExercises {
 //        etc.
 //                this will help you for this bonus...
 //        https://stackoverflow.com/questions/12421444/how-to-format-a-number-0-9-to-display-with-2-digits-its-not-a-date
-        int minutes = 0;
-        for(int hour = 1; hour < 12; minutes++) {
-            String time = "am";
-            if (minutes == 60){
-                hour++;
-                minutes=0;
-            }
-            if (hour >= 12){
-                time = "pm";
-            }
-            System.out.print(hour + ":");
-            System.out.printf("%02d", minutes);
-            System.out.println(time);
-        }
+//        int minutes = 0;
+//        for(int hour = 1; hour < 12; minutes++) {
+//            String time = "am";
+//            if (minutes == 60){
+//                hour++;
+//                minutes=0;
+//            }
+//            if (hour >= 12){
+//                time = "pm";
+//            }
+//            System.out.print(hour + ":");
+//            System.out.printf("%02d", minutes);
+//            System.out.println(time);
+//        }
     }
 }
