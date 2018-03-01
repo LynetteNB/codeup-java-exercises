@@ -14,7 +14,7 @@ public class MethodsExercises {
         System.out.println("5.2 / 3.5 = " + Division(5.2, 3.5));
         System.out.println("5 mod 3 = " + Modulus(5, 3));
 //        System.out.println("5.2 mod 3.5 = " + Modulus(5.2, 3.5));//returns 1.700000002
-
+        System.out.println(MultiplicationR(4, 5));
         factorialTable();
         diceRoll();
 
@@ -34,13 +34,20 @@ public class MethodsExercises {
     public static int Subtraction(int a, int b) {
         return a-b;
     }
-//    Multiplication
+//    Multiplication using for loop
     public static int Multiplication(int a, int b) {
         int total = 0;
         for(int i = 1; i <= b; i++) {
             total += a;
         }
         return total;
+    }
+    //Multiplication using Recursion
+    public static int MultiplicationR(int a, int b) {
+        if(b == 1){
+            return a;
+        }
+        return a + MultiplicationR(a, b-1);
     }
     public static double Multiplication(double a, double b) {
         return a*b;
@@ -86,26 +93,27 @@ public class MethodsExercises {
 //    Continue only if the user agrees to.
 //    A factorial is a number multiplied by each of the numbers before it.
 //    Factorials are denoted by the exclamation point (n!). Ex:
-    public static void factorial(int num){
-        long factorial = 1;
-        String factorialString = num + "! = ";
-        for(int i = num; i >= 1; i--){
-            factorial *= i;
-            if(i == 1){
-                factorialString += i;
-            } else {
-                factorialString += i + " x ";
-            }
-        }
-        factorialString += " = " + factorial;
-        System.out.println(factorialString);
 
+    //Factorial String to display using recursion
+    public static String factorial(int num, int total){
+        if(num == 1){
+                return "1 = " + factorialTotal(total);
+        }
+        return num + " x " + factorial(num-1, total);
+    }
+    //factorial calculation using recursion
+    public static int factorialTotal(int num) {
+        if(num == 1){
+            return 1;
+        }
+        return num * factorialTotal(num-1);
     }
     public static void factorialTable(){
         Scanner scan = new Scanner(System.in);
+        System.out.println("I want to display some factorials!");
         int userInput = getInteger(1,20);
         for(int i = 1; i <= userInput; i++) {
-            factorial(i);
+            System.out.println(i + "! = " + factorial(i, i));
         }
         System.out.print("Would you like to continue? ");
         String userContinue = scan.next();
@@ -123,6 +131,7 @@ public class MethodsExercises {
 //    Use the .random method of the java.lang.Math class to generate random numbers.
     public static void diceRoll (){
         Scanner scan = new Scanner(System.in);
+        System.out.println("Let's roll some dice!");
         int diceSides = getInteger(1, 20);
         System.out.print("Roll the " + diceSides + " sided dice? [y/n] ");
         if(scan.next().startsWith("y")){
