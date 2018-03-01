@@ -7,7 +7,7 @@ public class MethodsExercises {
         System.out.println("5 + 3 = " + Addition(5, 3));
         System.out.println("5.2 + 3.5 = " + Addition(5.2, 3.5));
         System.out.println("5 - 3 = " + Subtraction(5, 3));
-//        System.out.println("5.2 - 3.5 = " + Subtraction(5.2, 3.5));//returns 1.7000000002
+//        System.out.println("5.2 - 3.5 = " + Subtraction(5.2, 3.5));//returns 1.7000000002 Floating point ieee 754
         System.out.println("5 * 3 = " + Multiplication(5, 3));
         System.out.println("5.2 * 3.5 = " + Multiplication(5.2, 3.5));
         System.out.println("5 / 3 = " + Division(5, 3));
