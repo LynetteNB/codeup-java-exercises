@@ -19,7 +19,7 @@ public class Input {
     public int getInt(int min, int max) {
 //    The getInt(int min, int max) method should keep prompting the user for input until they give an integer within the min and max.
         System.out.print("Please enter an integer between " + min + " and " + max + ": ");
-        int check = scanner.nextInt();
+        int check = getInt();
         if(check < min || check > max) {
             return getInt(min, max);
         } else {
@@ -32,7 +32,7 @@ public class Input {
     public double getDouble(double min, double max) {
 //    The getDouble method should do the same thing, but with decimal numbers.
         System.out.print("Please enter any real number between " + min + " and " + max + ": ");
-        double check = scanner.nextDouble();
+        double check = getDouble();
         if(check < min || check > max) {
             return getDouble(min, max);
         } else {
@@ -46,43 +46,26 @@ public class Input {
     //With PROMPT parameter
     public String getString(String prompt) {
         System.out.print(prompt);
-        return scanner.nextLine();
+        return getString();
     }
     public Boolean yesNo(String prompt) {
         System.out.print(prompt);
-        String check = scanner.next();
-        if(check.equalsIgnoreCase("Y") || check.startsWith("y") || check.startsWith("Y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return yesNo();
     }
     public int getInt(int min, int max, String prompt) {
         System.out.println(prompt);
-        System.out.print("Please enter an integer between " + min + " and " + max + ": ");
-        int check = scanner.nextInt();
-        if(check < min || check > max) {
-            return getInt(min, max);
-        } else {
-            return check;
-        }
+        return getInt(min, max);
     }
     public int getInt(String prompt){
         System.out.print(prompt);
-        return scanner.nextInt();
+        return getInt();
     }
     public double getDouble(double min, double max, String prompt) {
         System.out.println(prompt);
-        System.out.print("Please enter any real number between " + min + " and " + max + ": ");
-        double check = scanner.nextDouble();
-        if(check < min || check > max) {
-            return getDouble(min, max);
-        } else {
-            return check;
-        }
+        return getDouble(min, max);
     }
     public double getDouble(String prompt){
         System.out.print(prompt);
-        return scanner.nextDouble();
+        return getDouble();
     }
 }

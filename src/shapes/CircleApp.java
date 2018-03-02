@@ -11,7 +11,7 @@ public class CircleApp {
             System.out.printf("The area of a circle with a radius of " + radius + " is %.2f.\n", circle.getArea());
             System.out.printf("The circumference of a circle with a radius of " + radius + " is %.2f.\n", circle.getCircumference());
         } while (scanner.yesNo("Would you like to make another circle? "));
-        System.out.printf("You made " + Circle.getNumOfCircles() + " circles!");
+        System.out.print("You made " + Circle.getNumOfCircles() + " circles!");
     }
 
 }
