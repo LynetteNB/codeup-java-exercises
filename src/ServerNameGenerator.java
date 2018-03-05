@@ -6,7 +6,7 @@ public class ServerNameGenerator {
         System.out.println(adjectives[getRandomNum()] + " - " + nouns[getRandomNum()]);
 
     }
-    public static int getRandomNum(){
+    private static int getRandomNum(){
         return (int) Math.floor(Math.random()*10);
     }
 }

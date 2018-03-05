@@ -10,11 +10,7 @@ public class Input {
     public Boolean yesNo() {
         String check = scanner.next();
 //        The yesNo method should return true if the user enters y, yes, or variants thereof, and false otherwise.
-        if(check.equalsIgnoreCase("Y") || check.startsWith("y") || check.startsWith("Y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return check.equalsIgnoreCase("Y") || check.startsWith("y") || check.startsWith("Y");
     }
     public int getInt(int min, int max) {
 //    The getInt(int min, int max) method should keep prompting the user for input until they give an integer within the min and max.
