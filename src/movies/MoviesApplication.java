@@ -32,7 +32,7 @@ public class MoviesApplication {
         return category;
     }
     public static void displayMovie (Movie movie) {
-            System.out.print(movie);
+        System.out.print(movie);
     }
     public static void displayMovies () {
         for(Movie movie : movieArray) {
@@ -45,6 +45,51 @@ public class MoviesApplication {
                 System.out.print(movie);
             }
         }
+    }
+    public static void searchByTitle() {
+        System.out.print("| Search by title: ");
+        input.getString();
+        String search = input.getString();
+        for(Movie movie : movieArray) {
+            if(movie.getName().toLowerCase().contains(search.toLowerCase())) {
+                displayMovie(movie);
+            }
+        }
+    }
+    public static void modifyMovie() {
+        System.out.print("| Which movie would you like to modify? ");
+        int movieCount = 0;
+        int movieIndex = 0;
+        input.getString();
+
+        String search = input.getString();
+        for(Movie movie : movieArray) {
+            if (movie.getName().toLowerCase().equals(search.toLowerCase())) {
+                movieCount += 1;
+                movieIndex = Arrays.binarySearch(movieArray, movie, Movie.MovieNameComparator);
+                break;
+            } else if (movie.getName().toLowerCase().contains(search.toLowerCase())) {
+                movieCount += 1;
+                movieIndex = Arrays.binarySearch(movieArray, movie, Movie.MovieNameComparator);
+            }
+        }
+        if (movieCount == 1) {
+            displayMovie(movieArray[movieIndex]);
+            if (input.yesNo("Would you like to change this movie? ")) {
+                input.getString();
+                String newMovie = input.getString("Please enter the new title for " + movieArray[movieIndex].getName() + ": ");
+                movieArray[movieIndex] = new Movie(newMovie, getCategory());
+            }
+        } else {
+            System.out.println("<----Please be more specific in your movie title to edit.---->");
+        }
+    }
+    public static void addNewMovie() {
+        movieArray=Arrays.copyOf(movieArray, movieArray.length+1);
+        input.getString();
+        String movie = input.getString("Enter the name of the movie: ");
+        movieArray[movieArray.length-1] = new Movie(movie, getCategory());
+        movieArray[movieArray.length-1].setRating(input.getInt(0, 10, "How would you like to rate this movie? "));
     }
     public static void main(String[] args) {
         int choice;
@@ -59,11 +104,12 @@ public class MoviesApplication {
             System.out.printf("| 4 - %-23s |\n", "view horror movies");
             System.out.printf("| 5 - %-23s |\n", "view scifi movies");
             System.out.printf("| 6 - %-23s |\n", "view musical movies");
-            System.out.printf("| 7 - %-23s |\n", "search movies by title");
-            System.out.printf("| 8 - %-23s |\n", "modify existing movie");
-            System.out.printf("| 9 - %-23s |\n", "add a new movie");
+            System.out.printf("| 7 - %-23s |\n", "view comedy movies");
+            System.out.printf("| 8 - %-23s |\n", "search movies by title");
+            System.out.printf("| 9 - %-23s |\n", "modify existing movie");
+            System.out.printf("| 10 - %-23s |\n", "add a new movie");
             System.out.println(" ============================= ");
-            choice = input.getInt(0, 9,"\nEnter your choice: ");
+            choice = input.getInt(0, 10,"\nEnter your choice: ");
             System.out.println(" ------------------------------------------------------");
             switch(choice){
                 case 1:
@@ -85,48 +131,16 @@ public class MoviesApplication {
                     displayMovies("musical");
                     break;
                 case 7:
-                    System.out.print("| Search by title: ");
-                    input.getString();
-                    String search = input.getString();
-                    for(Movie movie : movieArray) {
-                        if(movie.getName().toLowerCase().contains(search.toLowerCase())) {
-                            displayMovie(movie);
-                        }
-                    }
+                    displayMovies("comedy");
                     break;
                 case 8:
-                    System.out.print("| Which movie would you like to modify? ");
-                    int movieCount = 0;
-                    int movieIndex = 0;
-                    input.getString();
-
-                    search = input.getString();
-                    for(Movie movie : movieArray) {
-                        if (movie.getName().toLowerCase().equals(search.toLowerCase())) {
-                            movieCount += 1;
-                            movieIndex = Arrays.binarySearch(movieArray, movie, Movie.MovieNameComparator);
-                            break;
-                        } else if (movie.getName().toLowerCase().contains(search.toLowerCase())) {
-                            movieCount += 1;
-                            movieIndex = Arrays.binarySearch(movieArray, movie, Movie.MovieNameComparator);
-                        }
-                    }
-                    if (movieCount == 1) {
-                        displayMovie(movieArray[movieIndex]);
-                        if (input.yesNo("Would you like to change this movie? ")) {
-                            input.getString();
-                            String newMovie = input.getString("Please enter the new title for " + movieArray[movieIndex].getName() + ": ");
-                            movieArray[movieIndex] = new Movie(newMovie, getCategory());
-                        }
-                    } else {
-                        System.out.println("<----Please be more specific in your movie title to edit.---->");
-                    }
+                    searchByTitle();
                     break;
                 case 9:
-                    movieArray=Arrays.copyOf(movieArray, movieArray.length+1);
-                    input.getString();
-                    String movie = input.getString("Enter the name of the movie: ");
-                    movieArray[movieArray.length-1] = new Movie(movie, getCategory());
+                    modifyMovie();
+                    break;
+                case 10:
+                    addNewMovie();
                     break;
                 default:
                     System.out.printf("%29s\n", "Buh-bye!");
