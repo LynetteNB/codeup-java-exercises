@@ -1,13 +1,50 @@
 package movies;
 import util.Input;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class MoviesApplication {
+    public static Input input = new Input();
+    public static Movie[] movieArray= Arrays.copyOf(MoviesArray.findAll(), MoviesArray.findAll().length);
+
+    public static String getCategory(){
+        String category = "unassigned";
+        int categoryChosen = input.getInt(1, 5, "Enter the category:\n1 - animated\n2 - drama\n3 - horror\n4 - scifi\n5 - musical\n6 - comedy");
+        switch(categoryChosen){
+            case 1:
+                category = "animated";
+                break;
+            case 2:
+                category = "drama";
+                break;
+            case 3:
+                category = "horror";
+                break;
+            case 4:
+                category = "scifi";
+                break;
+            case 5:
+                category = "musical";
+                break;
+            case 6:
+                category = "comedy";
+                break;
+        }
+        return category;
+    }
+    public static void displayMovies () {
+        for(Movie movie : movieArray) {
+            System.out.print(movie);
+        }
+    }
+    public static void displayMovies (String category) {
+        for(Movie movie : movieArray) {
+            if(movie.getCategory().equals(category)) {
+                System.out.print(movie);
+            }
+        }
+    }
     public static void main(String[] args) {
-        Input input = new Input();
         int choice;
-        Movie[] movieArray= Arrays.copyOf(MoviesArray.findAll(), MoviesArray.findAll().length);
         do {
             Arrays.sort(movieArray, Movie.MovieNameComparator);
             System.out.println("\nWhat would you like to do?\n");
@@ -24,47 +61,25 @@ public class MoviesApplication {
             System.out.printf("| 9 - %-23s |\n", "add a new movie");
             System.out.println(" ============================= ");
             choice = input.getInt(0, 9,"\nEnter your choice: ");
-            System.out.println(" -------------------------------------------------");
+            System.out.println(" ------------------------------------------------------");
             switch(choice){
                 case 1:
-                    for(Movie movie : movieArray) {
-                        displayMovies(movie);
-                    }
+                    displayMovies();
                     break;
                 case 2:
-                    for(Movie movie : movieArray) {
-                        if(movie.getCategory().equals("animated")) {
-                            displayMovies(movie);
-                        }
-                    }
+                    displayMovies("animated");
                     break;
                 case 3:
-                    for(Movie movie : movieArray) {
-                        if(movie.getCategory().equals("drama")) {
-                            displayMovies(movie);
-                        }
-                    }
+                    displayMovies("drama");
                     break;
                 case 4:
-                    for(Movie movie : movieArray) {
-                        if(movie.getCategory().equals("horror")) {
-                            displayMovies(movie);
-                        }
-                    }
+                    displayMovies("horror");
                     break;
                 case 5:
-                    for(Movie movie : movieArray) {
-                        if(movie.getCategory().equals("scifi")) {
-                            displayMovies(movie);
-                        }
-                    }
+                    displayMovies("scifi");
                     break;
                 case 6:
-                    for(Movie movie : movieArray) {
-                        if(movie.getCategory().equals("musical")) {
-                            displayMovies(movie);
-                        }
-                    }
+                    displayMovies("musical");
                     break;
                 case 7:
                     System.out.print("| Search by title: ");
@@ -72,7 +87,7 @@ public class MoviesApplication {
                     String search = input.getString();
                     for(Movie movie : movieArray) {
                         if(movie.getName().toLowerCase().contains(search.toLowerCase())) {
-                            displayMovies(movie);
+                            displayMovies();
                         }
                     }
                     break;
@@ -95,12 +110,10 @@ public class MoviesApplication {
                         }
                     }
                     if (movieCount == 1) {
-                        displayMovies(movieArray[movieIndex]);
+//                        displayMovies(movieArray[movieIndex]);
                         if (input.yesNo("Would you like to change this movie? ")) {
                             input.getString();
-                            String category = "unassigned";
                             String newMovie = input.getString("Please enter the new title for " + movieArray[movieIndex].getName() + ": ");
-//                            input.getString();
                             movieArray[movieIndex] = new Movie(newMovie, getCategory());
                         }
                     } else {
@@ -109,7 +122,6 @@ public class MoviesApplication {
                     break;
                 case 9:
                     movieArray=Arrays.copyOf(movieArray, movieArray.length+1);
-                    String category = "Unassigned";
                     input.getString();
                     String movie = input.getString("Enter the name of the movie: ");
                     movieArray[movieArray.length-1] = new Movie(movie, getCategory());
@@ -117,33 +129,7 @@ public class MoviesApplication {
                 default:
                     System.out.printf("%29s\n", "Buh-bye!");
             }
-            System.out.println(" -------------------------------------------------");
+            System.out.println(" ------------------------------------------------------");
         } while(choice != 0);
-    }
-    public static void displayMovies (Movie movie) {
-        System.out.printf("| %-36s | %-8s |\n", movie.getName(), movie.getCategory());
-    }
-    public static String getCategory(){
-        Input input = new Input();
-        String category = "unassigned";
-        int categoryChosen = input.getInt(1, 5, "Enter the category:\n1 - animated\n2 - drama\n3 - horror\n4 - scifi\n5 - musical");
-        switch(categoryChosen){
-            case 1:
-                category = "animated";
-                break;
-            case 2:
-                category = "drama";
-                break;
-            case 3:
-                category = "horror";
-                break;
-            case 4:
-                category = "scifi";
-                break;
-            case 5:
-                category = "musical";
-                break;
-        }
-        return category;
     }
 }

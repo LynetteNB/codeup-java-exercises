@@ -4,6 +4,8 @@ import java.util.Comparator;
 public class Movie {
     private String name;
     private String category;
+    private int rating;
+
 
     public Movie(String name, String category) {
         this.name = name;
@@ -25,6 +27,19 @@ public class Movie {
     public void setCategory(String category) {
         this.category = category;
     }
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("| %-36s | %-8s | %-2d |\n", name, category, rating);
+    }
+
     public static Comparator<Movie> MovieNameComparator
             = new Comparator<Movie>() {
 
