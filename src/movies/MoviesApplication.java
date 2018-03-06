@@ -8,7 +8,7 @@ public class MoviesApplication {
 
     public static String getCategory(){
         String category = "unassigned";
-        int categoryChosen = input.getInt(1, 5, "Enter the category:\n1 - animated\n2 - drama\n3 - horror\n4 - scifi\n5 - musical\n6 - comedy");
+        int categoryChosen = input.getInt(1, 6, "Enter the category:\n1 - animated\n2 - drama\n3 - horror\n4 - scifi\n5 - musical\n6 - comedy");
         switch(categoryChosen){
             case 1:
                 category = "animated";
@@ -30,6 +30,9 @@ public class MoviesApplication {
                 break;
         }
         return category;
+    }
+    public static void displayMovie (Movie movie) {
+            System.out.print(movie);
     }
     public static void displayMovies () {
         for(Movie movie : movieArray) {
@@ -57,7 +60,7 @@ public class MoviesApplication {
             System.out.printf("| 5 - %-23s |\n", "view scifi movies");
             System.out.printf("| 6 - %-23s |\n", "view musical movies");
             System.out.printf("| 7 - %-23s |\n", "search movies by title");
-            System.out.printf("| 8 - %-23s |\n", "modify an existing movie");
+            System.out.printf("| 8 - %-23s |\n", "modify existing movie");
             System.out.printf("| 9 - %-23s |\n", "add a new movie");
             System.out.println(" ============================= ");
             choice = input.getInt(0, 9,"\nEnter your choice: ");
@@ -87,7 +90,7 @@ public class MoviesApplication {
                     String search = input.getString();
                     for(Movie movie : movieArray) {
                         if(movie.getName().toLowerCase().contains(search.toLowerCase())) {
-                            displayMovies();
+                            displayMovie(movie);
                         }
                     }
                     break;
@@ -98,7 +101,6 @@ public class MoviesApplication {
                     input.getString();
 
                     search = input.getString();
-                    System.out.println(search);
                     for(Movie movie : movieArray) {
                         if (movie.getName().toLowerCase().equals(search.toLowerCase())) {
                             movieCount += 1;
@@ -110,14 +112,14 @@ public class MoviesApplication {
                         }
                     }
                     if (movieCount == 1) {
-//                        displayMovies(movieArray[movieIndex]);
+                        displayMovie(movieArray[movieIndex]);
                         if (input.yesNo("Would you like to change this movie? ")) {
                             input.getString();
                             String newMovie = input.getString("Please enter the new title for " + movieArray[movieIndex].getName() + ": ");
                             movieArray[movieIndex] = new Movie(newMovie, getCategory());
                         }
                     } else {
-                        System.out.println("Please be more specific in your movie to edit.");
+                        System.out.println("<----Please be more specific in your movie title to edit.---->");
                     }
                     break;
                 case 9:
@@ -132,4 +134,5 @@ public class MoviesApplication {
             System.out.println(" ------------------------------------------------------");
         } while(choice != 0);
     }
+
 }

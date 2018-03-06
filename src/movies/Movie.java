@@ -47,7 +47,6 @@ public class Movie {
 
             String movieTitle1 = movie1.getName().replaceAll("^(?i)The ", "").toLowerCase();
             String movieTitle2 = movie2.getName().replaceAll("^(?i)The ", "").toLowerCase();
-            //ascending order
             return movieTitle1.compareTo(movieTitle2);
         }
 
