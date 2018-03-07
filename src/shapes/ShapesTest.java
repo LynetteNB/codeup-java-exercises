@@ -10,7 +10,7 @@ public class ShapesTest {
         System.out.println("The area of a square with a side of " + box2.length + " is " + box2.getArea() + ".");
 
         Measurable myShape = new Square(2.5);
-        //myShape.getLength() and myShape.getWidth does not work on a measurable object. must be class or subclass of Quadrilateral object
+        //myShape.getLength(), setLength(), setWidth() and myShape.getWidth() do not work on a measurable object. Must be class or subclass of Quadrilateral object
         System.out.println("Area = " + myShape.getArea());
         System.out.println("Perimeter = " + myShape.getPerimeter());
         myShape = new Rectangle(2.5, 5);
