@@ -1,10 +1,13 @@
 package grades;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Student {
     private String name;
     private ArrayList<Integer> grades;
+    private HashMap<String, String> attendance  = new HashMap<>();
 
     public Student(String name) {
         this.name = name;
@@ -32,10 +35,37 @@ public class Student {
             for (int i = 0; i<grades.size(); i++) {
                 total += grades.get(i);
             }
-            return total/grades.size();
+            return (double) total/grades.size();
         }
     }
-
+    public void recordAttendance(String date, String value){
+        if(value.equalsIgnoreCase("p") || value.equalsIgnoreCase("a")){
+            attendance.put(date, value);
+        }
+    }
+    public double getAttendancePercentage(){
+        int daysPresent = 0;
+        for(String key : attendance.keySet()){
+            if(attendance.get(key).equalsIgnoreCase("p")){
+                daysPresent += 1;
+            }
+        }
+        return (double) daysPresent/attendance.size() * 100;
+    }
+    public void getStudentAttendance(){
+        for(String key : attendance.keySet()){
+            System.out.println("Day: " + key + " - " + attendance.get(key));
+        }
+    }
+    public List<String> daysAbsent(){
+        List<String> daysAbsent = new ArrayList<>();
+        for(String key: attendance.keySet()){
+            if(attendance.get(key).equalsIgnoreCase("a")){
+                daysAbsent.add(key);
+            }
+        }
+        return daysAbsent;
+    }
     public static void main(String[] args) {
         //TESTING
         Student lynette = new Student("Lynette");
